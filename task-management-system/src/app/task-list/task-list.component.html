@@ -2,11 +2,30 @@
   <div class="task-section-header">
     <div class="download-button-div">
       <h2>Tasks</h2>
-      <button mat-raised-button class="download-button" type="button" (click)="downloadTasksAsCSV()">Download csv</button>
+      <button mat-raised-button class="download-button" type="button" (click)="downloadCSV()">Export to CSV</button>
     </div>
     <div class="task-header-side-bar">
       <app-task-add-button class="task-add-button" (addTask)="onAddTask($event)"></app-task-add-button>
-      
+      <section>
+          <div class="taks-filter-div" style="display: flex; ">
+           
+            <button mat-button [matMenuTriggerFor]="dueDate">Sort By Due Date</button>
+            <mat-menu #dueDate="matMenu">
+              <button mat-menu-item (click)="onSortByEarliestDueDateFirst()">Earliest</button>
+              <button mat-menu-item (click)="onSortByFarthestDueDateFirst()">Farthest</button>
+            </mat-menu>
+            <button mat-button [matMenuTriggerFor]="status">Sort By Status</button>
+            <mat-menu #status="matMenu">
+              <button mat-menu-item (click)="onSortByCompletedFirst()">Completed</button>
+              <button mat-menu-item (click)="onSortByPendingFirst()">Pending</button>
+            </mat-menu>
+            <button mat-button [matMenuTriggerFor]="priority">Sort By Priority</button>
+            <mat-menu #priority="matMenu">
+              <button mat-menu-item (click)="onSortByDecreasingPriority()">Highest first</button>
+              <button mat-menu-item (click)="onSortByIncreasingPriority()" >Lowest first</button>
+            </mat-menu>
+          </div>
+      </section>
     </div>
   </div>
     
