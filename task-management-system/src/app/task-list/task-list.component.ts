@@ -7,7 +7,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { TaskAddButton } from "../task-add-form/task-add-form.component";
 import {MatMenuModule} from '@angular/material/menu';
 import { Store } from '@ngrx/store';
-import {selectTasks } from '../state/tasks.selector';
+import { selectTasks } from '../state/tasks.selector';
 import { taskActions } from '../state/task.actions';
 import { take } from 'rxjs/operators';
 import {MatIconModule} from '@angular/material/icon';
@@ -53,5 +53,35 @@ export class TaskList {
     this.store.dispatch(taskActions.editTask({task}));
     const logs = {id:task.id,name:task.name,title: `Marked as ${task.status}`, timeStamp:new Date().toLocaleString()};
     
+  }
+  
+  downloadTasksAsCSV() {
+    this.tasks$.pipe(take(1)).subscribe(tasks => {
+      const csvData = this.convertTasksToCSV(tasks);
+      this.downloadCSV(csvData, 'tasks.csv');
+    });
+  }
+
+  convertTasksToCSV(tasks: Task[]): string {
+    const header = 'ID,Name,Description,Due Date,Priority Level,Status\n';
+    const rows = tasks.map(task => (
+      `${task.id},${task.name},${task.description},${task.duedate.split(',')[0]},${task.priorityLevel},${task.status}`
+    )).join('\n');
+
+    return header + rows;
+  }
+
+  downloadCSV(csvData: string, filename: string) {
+    const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+
+    link.setAttribute('href', url);
+    link.setAttribute('download', filename);
+    link.style.visibility = 'hidden';
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 }

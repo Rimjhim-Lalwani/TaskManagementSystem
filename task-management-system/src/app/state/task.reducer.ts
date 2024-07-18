@@ -3,6 +3,7 @@ import { Task } from "../task-list/task.model";
 import { TasksApiAction } from "./task.actions";
 import { taskActions } from "./task.actions";
 
+
 export const initialState: Array<Task> = [];
 
 export const taskReducer = createReducer(
@@ -18,6 +19,7 @@ export const taskReducer = createReducer(
         return newList;
     }),
     on(taskActions.addTask,(state,{task}) =>{
+       
         const newTaskList = [task,...state];
         console.log(newTaskList);
         console.log(JSON.stringify(newTaskList));

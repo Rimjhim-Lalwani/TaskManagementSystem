@@ -2,6 +2,7 @@
   <div class="task-section-header">
     <div class="download-button-div">
       <h2>Tasks</h2>
+      <button mat-raised-button class="download-button" type="button" (click)="downloadTasksAsCSV()">Download csv</button>
     </div>
     <div class="task-header-side-bar">
       <app-task-add-button class="task-add-button" (addTask)="onAddTask($event)"></app-task-add-button>
