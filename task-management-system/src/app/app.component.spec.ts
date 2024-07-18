@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'task-management-system' title`, () => {
+  it(`should have the 'Task-Management-System' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('task-management-system');
+    expect(app.title).toEqual('Task-Management-System');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, task-management-system');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, Task-Management-System');
   });
 });
