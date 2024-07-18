@@ -1,0 +1,40 @@
+<div class="task-box">
+  <div class="task-section-header">
+    <div class="download-button-div">
+      <h2>Tasks</h2>
+    </div>
+    <div class="task-header-side-bar">
+      <app-task-add-button class="task-add-button" (addTask)="onAddTask($event)"></app-task-add-button>
+      
+    </div>
+  </div>
+    
+  <div class="task-container">
+    <div
+      class="task-item "
+      *ngFor="let task of (tasks$ | async)"
+    >
+    <div class="task-card " [id]="task.status">
+      <!-- <p><b>id: </b>{{task.id}}</p> -->
+      <section class="task-details">
+          <section class="">
+            <mat-checkbox class="" [checked]="task.status==='completed'" (change)="onStatusChange(task,$event)" ></mat-checkbox>
+          </section >
+          <p>{{task.name}} </p>
+          <!-- <p><b>description: </b>{{task.description}}</p> -->
+          <p> <b> DueBy: </b>{{task.duedate.split(',')[0]}}</p>
+          <p><b>Prioirity: </b>{{task.priorityLevel}}</p>
+        </section>
+        <!-- <p><b>status: </b>{{task.status}}</p> -->
+        <div class="task-buttons-container">
+          <app-task-detail-button [task]="task"></app-task-detail-button>
+          <button
+            (click)="onRemoveTask(task)"
+            data-test="remove-button" class="remove-button task-button"
+          ><mat-icon>delete</mat-icon></button>
+          <app-task-edit-button [task]="task" (editTask)="onEditTask($event)"></app-task-edit-button>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>

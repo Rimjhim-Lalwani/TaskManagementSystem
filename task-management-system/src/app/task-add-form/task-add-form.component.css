@@ -1,0 +1,8 @@
+.form{
+    display: flex;
+    flex-direction: column;
+}
+.mat-mdc-radio-button .mat-internal-form-field{
+    color: rgb(0, 174, 255);
+}
+

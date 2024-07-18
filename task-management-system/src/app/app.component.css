@@ -1,0 +1,13 @@
+.main{
+    position: relative;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    align-items: center;
+    justify-content: center;
+
+}
+.content{
+    max-height: 100%;
+    width:100vh;
+}
