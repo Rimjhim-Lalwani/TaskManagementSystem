@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .task-list {
+    margin: 20px;
+  }
+  
+  button {
+    margin: 5px;
+  }
+  
+  @media (max-width: 600px) {
+    .task-list {
+      margin: 10px;
+    }
+  
+    button {
+      display: block;
+      margin: 5px 0;
+    }
+  }
+  
