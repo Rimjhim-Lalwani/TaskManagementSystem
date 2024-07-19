@@ -2,7 +2,16 @@
     display: flex;
     flex-direction: column;
 }
+.add-form{
+    height:340px; 
+    width:440px
+}
 .mat-mdc-radio-button .mat-internal-form-field{
     color: rgb(0, 174, 255);
 }
 
+@media only screen and (max-width: 600px) {
+    .add-form{
+        width:340px;
+    }
+}

@@ -24,7 +24,7 @@ export interface TaskData {
   standalone: true,
   imports: [MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule],
   template: `
-    <button mat-raised-button style="background-color:rgb(33, 130, 228);color:black;border-radius:20px;height:30px"  (click)="openDialog()">Add a task</button>
+    <button mat-raised-button style="color:rgb(0, 0, 0);border: 1px solid black;background-color:rgb(255, 255, 255);border-radius:20px;height:30px"  (click)="openDialog()">Add a task</button>
    
   `
 })
@@ -80,7 +80,7 @@ export class TaskAddButton {
   providers: [provideNativeDateAdapter()],
   template: `
     <h2 mat-dialog-title>Add new Task</h2>
-    <mat-dialog-content style="height:340px; width:440px">
+    <mat-dialog-content class="add-form">
       <div class="form" >
         <mat-form-field>
           <mat-label>Task Name</mat-label>

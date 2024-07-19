@@ -91,10 +91,10 @@ export class TaskEditButtonComponent {
 @Component({
   selector: 'edit-form-dialog',
   providers: [provideNativeDateAdapter()],
-  // templateUrl: '../task-add-form.component.html',
+  
   template: `
-    <h2 mat-dialog-title>Editing task:</h2><p class="task-id" >id: {{data.id}}</p>
-    <mat-dialog-content style="height:340px; width:440px">
+    <h2 mat-dialog-title>Editing task:</h2>
+    <mat-dialog-content class="edit-form">
      
       <div class="form" >
         

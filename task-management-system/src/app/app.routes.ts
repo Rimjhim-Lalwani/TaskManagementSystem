@@ -6,7 +6,7 @@ export const routes: Routes = [
     {
         path: '',
         component: TaskList,
-        title: "TaskManakgementSystem",
+        title: "TaskManagementSystem",
     }
    
 ];

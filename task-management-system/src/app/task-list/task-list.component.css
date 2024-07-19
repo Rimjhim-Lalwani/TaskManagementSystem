@@ -23,8 +23,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color:#ffffff;
-    background-color: rgb(95, 95, 95);
+    color:#000000;
+    background-color: rgb(254, 98, 158);
     padding-inline: 15px;
 
 }
@@ -33,11 +33,7 @@
     gap: 10px;
 }
 .download-button{
-    /* background-color: #e1eaee;
-    border: none;
-    box-sizing: border-box;
-    border-radius: 25px;
-    padding: 5px 10px; */
+    
     display: flex;
     
 }
@@ -57,7 +53,7 @@
 .task-button{
     background-color: #ffffff;
     border: none;
-    color: rgb(255, 0, 0);
+    color: rgb(255, 0, 89);
     padding-inline: 10px;
     padding-block: 3px;
     transition: box-shadow 0.3s ease-in-out;   
@@ -110,7 +106,7 @@
   }
   
   .task-table-header {
-    background-color: #888888;
+    background-color: #e7ffa5;
     font-weight: bold;
     position:sticky;
     top:12%;
@@ -152,6 +148,7 @@
   }
     .tasks-div-container {
         margin-top: 0; /* Remove margin-top on small screens */
+        font-size: small;
     }
 
     .task-section-header {
@@ -162,12 +159,12 @@
     .task-table-header {
         width: 100%; /* Full width on small screens */
         margin-top: 0; /* Remove margin on small screens */
+        font-size: small;
         
     }
 
     .sidebar {
         width: 100%; /* Sidebar takes full width */
-        padding-left: 0; /* Remove padding */
         
         flex-direction: column;
     }

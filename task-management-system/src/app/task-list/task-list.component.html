@@ -26,7 +26,7 @@
       </div>
     </mat-radio-group>
     </div>
-    <button mat-button (click)="openHistory()">View History</button>
+    <button style="margin: 30px;color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);height:30px;border: 1px solid black;"  mat-raised-button (click)="openHistory()">View History</button>
 
 </section>
 <div class="tasks-section" >
@@ -34,7 +34,7 @@
       <h3>All Tasks</h3>
     <div class="task-header-side-bar">
       <app-task-add-button class="task-add-button" (addTask)="onAddTask($event)"></app-task-add-button>
-      <button style="background-color: rgb(33, 130, 228);color:black;height:30px;" mat-raised-button class="download-button" type="button" (click)="downloadCSV()">Export to csv</button>
+      <button style="color:rgb(0, 0, 0);background-color:rgb(255, 255, 255);height:30px;border: 1px solid black;" mat-raised-button class="download-button" type="button" (click)="downloadCSV()">Export to csv</button>
     </div>
   </div>
   <div class="task-table-container">

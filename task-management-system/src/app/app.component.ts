@@ -26,7 +26,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 
 export class AppComponent implements OnInit {
-  title = 'TaskManager';
+  title = 'TaskManagementSystem';
 
   tasks$;
   historyList$;
