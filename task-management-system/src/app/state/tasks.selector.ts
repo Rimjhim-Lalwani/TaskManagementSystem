@@ -57,30 +57,29 @@ export const completedTaskFirst = createSelector(
 export const earliestDueDate = createSelector(
     selectTasks,
     (tasks) => {
-      return [...tasks].sort((a, b) => {
-        
-        const datePartsA = a.duedate.split(",")[0].split("/");
-        const datePartsB = b.duedate.split(",")[0].split("/");
-        
-        const dateA = new Date(`${datePartsA[2]}-${datePartsA[1]}-${datePartsA[0]}`);
-        const dateB = new Date(`${datePartsB[2]}-${datePartsB[1]}-${datePartsB[0]}`);
-        
-        return dateA.getTime() - dateB.getTime();
-      });
+        return [...tasks].sort((a, b) => {
+            const datePartsA = a.duedate.split(",")[0].split("/");
+            const datePartsB = b.duedate.split(",")[0].split("/");
+
+            const dateA = new Date(Number(datePartsA[2]), Number(datePartsA[1]) - 1, Number(datePartsA[0]));
+            const dateB = new Date(Number(datePartsB[2]), Number(datePartsB[1]) - 1, Number(datePartsB[0]));
+
+            return dateA.getTime() - dateB.getTime();
+        });
     }
 );
+
 export const farthestDueDate = createSelector(
     selectTasks,
     (tasks) => {
-      return [...tasks].sort((a, b) => {
-        
-        const datePartsA = a.duedate.split(",")[0].split("/");
-        const datePartsB = b.duedate.split(",")[0].split("/");
-        
-        const dateA = new Date(`${datePartsA[2]}-${datePartsA[1]}-${datePartsA[0]}`);
-        const dateB = new Date(`${datePartsB[2]}-${datePartsB[1]}-${datePartsB[0]}`);
-        
-        return dateB.getTime() - dateA.getTime();
-      });
+        return [...tasks].sort((a, b) => {
+            const datePartsA = a.duedate.split(",")[0].split("/");
+            const datePartsB = b.duedate.split(",")[0].split("/");
+
+            const dateA = new Date(Number(datePartsA[2]), Number(datePartsA[1]) - 1, Number(datePartsA[0]));
+            const dateB = new Date(Number(datePartsB[2]), Number(datePartsB[1]) - 1, Number(datePartsB[0]));
+
+            return dateB.getTime() - dateA.getTime();
+        });
     }
 );
