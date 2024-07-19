@@ -5,12 +5,13 @@ import { provideStore } from '@ngrx/store';
 import { taskReducer } from './state/task.reducer';
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { historyReducer } from './state/history.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideStore({tasks:taskReducer}), provideAnimationsAsync('noop'), provideAnimationsAsync()
+    provideStore({tasks:taskReducer, history:historyReducer}), provideAnimationsAsync('noop'), provideAnimationsAsync()
 ]
 };

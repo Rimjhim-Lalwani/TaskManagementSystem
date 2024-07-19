@@ -95,7 +95,7 @@ export class TaskEditButtonComponent {
   template: `
     <h2 mat-dialog-title>Editing task:</h2><p class="task-id" >id: {{data.id}}</p>
     <mat-dialog-content style="height:340px; width:440px">
-      <!-- <p>What's your favorite animal?</p> -->
+     
       <div class="form" >
         
         <mat-form-field>
@@ -165,7 +165,6 @@ export class EditFormDialog {
   readonly data = inject<TaskData>(MAT_DIALOG_DATA);
   readonly minDate = new Date();
   isCompleted = this.data.status === "completed";
-  // priorityLevel: string = this.data.priorityLevel;
   priorityList: string[] = ['low', 'medium', 'high'];
 
   onNoClick(): void {

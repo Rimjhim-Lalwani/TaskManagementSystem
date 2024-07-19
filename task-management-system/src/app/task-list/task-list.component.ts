@@ -6,6 +6,7 @@ import {MatCardModule} from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { TaskAddButton } from "../task-add-form/task-add-form.component";
 import {MatMenuModule} from '@angular/material/menu';
+import { MatRadioButton } from '@angular/material/radio';
 import { Store } from '@ngrx/store';
 import { completedTaskFirst, decreasingPriority, earliestDueDate, farthestDueDate, increasingPriority, pendingTaskFirst, selectTasks } from '../state/tasks.selector';
 import { taskActions } from '../state/task.actions';
@@ -13,38 +14,52 @@ import { take } from 'rxjs/operators';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
-import { TaskDetailButtonComponent,TaskDetailsComponent } from '../task-details/task-details.component';
-
+import { historyActions } from '../state/history.actions';
+import { MatDialog } from '@angular/material/dialog';
+import { HistoryComponent } from '../history/history.component';
+import { MatRadioGroup } from '@angular/material/radio';
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [MatButtonModule, MatDividerModule, MatIconModule, CommonModule, MatMenuModule, TaskEditButtonComponent, EditFormDialog, MatCardModule, MatCheckboxModule, TaskAddButton, TaskDetailButtonComponent],
+  imports: [MatButtonModule, MatDividerModule, MatIconModule, CommonModule, MatRadioGroup,MatRadioButton,MatMenuModule, TaskEditButtonComponent, EditFormDialog, MatCardModule, MatCheckboxModule, TaskAddButton],
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css'],
 })
 export class TaskList {
   tasks$;
 
-  constructor(private store:Store) {
+  constructor(private store:Store,public dialog: MatDialog) {
     this.tasks$ = this.store.select(selectTasks);
   }
-
+  
   onAddTask(task:Task){
     this.store.dispatch(taskActions.addTask({task}));
     console.log(task.duedate);
     const logs = {id:task.id,name:task.name ,title: "Added task", timeStamp:new Date().toLocaleString()};
-   
+    this.store.dispatch(historyActions.addLog({logs}))
+
   }
   onRemoveTask(task:Task){
     this.store.dispatch(taskActions.removeTask({taskId:task.id}));
-    const logs = {id:task.id,name:task.name ,title: "Rremoved task", timeStamp:new Date().toLocaleString()};
-    
+    const logs = {id:task.id,name:task.name ,title: "Removed task", timeStamp:new Date().toLocaleString()};
+    this.store.dispatch(historyActions.addLog({logs}))
+
   }
   onEditTask(task:Task){
     // console.log(task);
     this.store.dispatch(taskActions.editTask({task}));
     const logs = {id:task.id,name:task.name,title: "Edited task", timeStamp:new Date().toLocaleString()};
-    
+    this.store.dispatch(historyActions.addLog({logs}))
+
+  }
+  openHistory(): void {
+    const dialogRef = this.dialog.open(HistoryComponent, {
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
   onStatusChange(t:Task,event:any){
     // console.log(task);
@@ -52,7 +67,8 @@ export class TaskList {
     console.log("inside status change")
     this.store.dispatch(taskActions.editTask({task}));
     const logs = {id:task.id,name:task.name,title: `Marked as ${task.status}`, timeStamp:new Date().toLocaleString()};
-    
+    this.store.dispatch(historyActions.addLog({logs}))
+
   }
   onSortByDecreasingPriority(){
     this.tasks$ = this.store.select(decreasingPriority);

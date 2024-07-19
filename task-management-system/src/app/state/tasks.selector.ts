@@ -1,6 +1,9 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { Task } from "../task-list/task.model";
+import { History } from "../history-collection/history.model";
+
 export const selectTasks = createFeatureSelector<Array<Task>>('tasks');
+export const selectHistory = createFeatureSelector<Array<History>>('history');
 
 
 export const taskList = createSelector(
@@ -8,6 +11,11 @@ export const taskList = createSelector(
     (tasks) => { tasks }
 );
 
+
+export const historyList = createSelector(
+    selectHistory,
+    (history) => { history }
+);
 
 export const decreasingPriority = createSelector(
     selectTasks,

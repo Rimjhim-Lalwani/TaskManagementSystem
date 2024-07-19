@@ -1,53 +1,70 @@
-<div class="task-box">
-  <div class="task-section-header">
-    <div class="download-button-div">
-      <h2>Tasks</h2>
-      <button mat-raised-button class="download-button" type="button" (click)="downloadCSV()">Export to CSV</button>
+<div class="tasks" >
+  <section>
+    <div class="sidebar" >
+      <mat-radio-group >
+      <div>
+        <label class="task-label"><b>Sort By Due Date</b></label>
+        <div class="rad">
+            <mat-radio-button style="display: inline;" (click)="onSortByEarliestDueDateFirst()">Earliest</mat-radio-button>
+            <mat-radio-button style="display: inline;" (click)="onSortByFarthestDueDateFirst()">Farthest</mat-radio-button>
+        </div>
+      </div>
+      <div >
+        <label class="task-label"><b>Sort By Status</b></label>
+        <div class="rad">
+          <mat-radio-button style="display: inline;" (click)="onSortByCompletedFirst()">Completed</mat-radio-button>
+         <mat-radio-button style="display: inline;" (click)="onSortByPendingFirst()">Pending</mat-radio-button>
+        </div>
+      </div>
+        
+     <div>
+        <label class="task-label"><b>Sort By Priority</b></label>
+        <div class="rad">
+        <mat-radio-button  style="display: inline;" (click)="onSortByDecreasingPriority()">Highest first</mat-radio-button>
+        <mat-radio-button style="display: inline;" (click)="onSortByIncreasingPriority()" >Lowest first</mat-radio-button>
+        </div>
+      </div>
+    </mat-radio-group>
     </div>
+    <button mat-button (click)="openHistory()">View History</button>
+
+</section>
+<div class="tasks-section" >
+  <div class="task-section-header" style="position: sticky;top:0">
+      <h3>All Tasks</h3>
     <div class="task-header-side-bar">
       <app-task-add-button class="task-add-button" (addTask)="onAddTask($event)"></app-task-add-button>
-      <section>
-          <div class="taks-filter-div" style="display: flex; ">
-           
-            <button mat-button [matMenuTriggerFor]="dueDate">Sort By Due Date</button>
-            <mat-menu #dueDate="matMenu">
-              <button mat-menu-item (click)="onSortByEarliestDueDateFirst()">Earliest</button>
-              <button mat-menu-item (click)="onSortByFarthestDueDateFirst()">Farthest</button>
-            </mat-menu>
-            <button mat-button [matMenuTriggerFor]="status">Sort By Status</button>
-            <mat-menu #status="matMenu">
-              <button mat-menu-item (click)="onSortByCompletedFirst()">Completed</button>
-              <button mat-menu-item (click)="onSortByPendingFirst()">Pending</button>
-            </mat-menu>
-            <button mat-button [matMenuTriggerFor]="priority">Sort By Priority</button>
-            <mat-menu #priority="matMenu">
-              <button mat-menu-item (click)="onSortByDecreasingPriority()">Highest first</button>
-              <button mat-menu-item (click)="onSortByIncreasingPriority()" >Lowest first</button>
-            </mat-menu>
-          </div>
-      </section>
+      <button style="background-color: rgb(33, 130, 228);color:black;height:30px;" mat-raised-button class="download-button" type="button" (click)="downloadCSV()">Export to csv</button>
     </div>
   </div>
-    
-  <div class="task-container">
+  <div class="task-table-container">
+    <div class="task-table-header" style="width:100%">
+      <div class="task-table-cell">TASK NAME</div>
+      <div class="task-table-cell">DESCRIPTION</div>
+      <div class="task-table-cell">DUE DATE</div>
+      <div class="task-table-cell">PRIORITY</div>
+      <div class="task-table-cell">ACTIONS</div>
+
+    </div>
+  <div class="tasks-div-container">
     <div
       class="task-item "
       *ngFor="let task of (tasks$ | async)"
     >
-    <div class="task-card " [id]="task.status">
+    <div class="task-table-row" [id]="task.status">
       <!-- <p><b>id: </b>{{task.id}}</p> -->
-      <section class="task-details">
+      
           <section class="">
             <mat-checkbox class="" [checked]="task.status==='completed'" (change)="onStatusChange(task,$event)" ></mat-checkbox>
           </section >
-          <p>{{task.name}} </p>
-          <!-- <p><b>description: </b>{{task.description}}</p> -->
-          <p> <b> DueBy: </b>{{task.duedate.split(',')[0]}}</p>
-          <p><b>Prioirity: </b>{{task.priorityLevel}}</p>
-        </section>
+          <div class="task-table-cell">{{task.name}} </div>
+          <div class="task-table-cell">{{task.description}}</div>
+          <div class="task-table-cell"> {{task.duedate.split(',')[0]}}</div>
+          
+          <div class="task-table-cell">{{task.priorityLevel}}</div>
+        
         <!-- <p><b>status: </b>{{task.status}}</p> -->
-        <div class="task-buttons-container">
-          <app-task-detail-button [task]="task"></app-task-detail-button>
+        <div class="task-table-cell">
           <button
             (click)="onRemoveTask(task)"
             data-test="remove-button" class="remove-button task-button"
@@ -57,4 +74,4 @@
     </div>
     </div>
   </div>
-</div>
+</div></div>

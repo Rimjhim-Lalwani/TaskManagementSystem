@@ -1,39 +1,52 @@
-.task-box{
-    margin-inline: 10px;
-    margin-top: 20px;
-    box-shadow: 0px 0px 25px rgb(165, 165, 165);
+.tasks-section{
+    overflow: hidden;
+    height: 100%;
+    border-left: 1px solid black;
     position: relative;
     height: 80vh;
-    overflow-y: scroll;
-    padding-bottom: 20px;
+    width: 100%;
+    
 }
-.task-container{
-    margin-top:10px ;
+.tasks-div-container{
+    height: 100%;
+    overflow-y: scroll;
+    z-index: 2;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    padding-inline: 25px;
-    padding-right: -25px;
+   background-color: #ffffff;
     position: relative;
+}
 
-}
-.for-scroll-bar-hiding{
-    overflow: hidden;    
-    position: relative;
-}
 .task-section-header{
+    
+    z-index: 3;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color:white;
-    box-shadow: 0px 0px 12px rgb(165, 165, 165);
-    background-color: rgb(0, 0, 0);
+    color:#ffffff;
+    background-color: rgb(95, 95, 95);
     padding-inline: 15px;
-    position: sticky;
-    top: 0;
-    z-index: 199;
-}
 
+}
+.task-header-side-bar{
+    display: flex;
+    gap: 10px;
+}
+.download-button{
+    /* background-color: #e1eaee;
+    border: none;
+    box-sizing: border-box;
+    border-radius: 25px;
+    padding: 5px 10px; */
+    display: flex;
+    
+}
+.download-button-div{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
 
 .task-buttons-container{
     display: flex;
@@ -44,18 +57,13 @@
 .task-button{
     background-color: #ffffff;
     border: none;
-    color: rgba(20, 64, 120, 0.83);
-    border-radius: 25px;
+    color: rgb(255, 0, 0);
     padding-inline: 10px;
     padding-block: 3px;
-    box-shadow: 0px 2px 8px rgba(165, 165, 165, 0.575);
-    transition: box-shadow 0.3s ease-in-out;  
-    
-    
+    transition: box-shadow 0.3s ease-in-out;   
 }
 .task-button:hover{
-    background-color: #b8e9ffa7;
-    box-shadow: 0px 0px 14px rgba(165, 165, 165, 0.575);
+    color: rgb(102, 27, 27);
 }
 
 .task-card{
@@ -63,9 +71,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    border: 2px solid rgba(163, 163, 163, 0.636);
-    border-radius: 10px;
-    padding-right: 10px;
+    border-bottom: 1px solid rgba(235, 235, 235, 0.636);
     
 }
 .task-details{
@@ -73,11 +79,193 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-left:0 ;
+   
     position: relative;
     overflow: hidden;
 }
+
+
+
 #completed{
     text-decoration: line-through;
     opacity: 0.5;
+}
+.sidebar{
+    margin-top: 50px;
+    width: 15vw;
+    padding-left: 25px;
+    display: flex; 
+    flex-direction: row;
+}
+.task-table-container {
+    flex-grow: 1;
+    
+  }
+  
+  .task-table-header, .task-table-row {
+    display: flex;
+    align-items: center;
+    padding: 10px 2px;
+    border-bottom: 0.2px solid #0000008c;
+  }
+  
+  .task-table-header {
+    background-color: #888888;
+    font-weight: bold;
+    position:sticky;
+    top:12%;
+   padding-left: 15px;
+    width:calc(100% - 15vw);
+    padding-left: 10px;
+    z-index: 3;
+    
+   
+   
+  }
+  
+  .task-table-cell {
+    flex: 0.5;
+    display: flex;
+    align-items: center;
+  }
+  .tasks{
+    display: flex;
+    flex-direction: row;
+  }
+  .rad{
+    display: flex;
+    flex-direction: column;
+  }
+  /* Mobile devices (small screens) */
+@media only screen and (max-width: 600px) {
+    .tasks{
+        flex-direction: column-reverse;
+    }
+    .tasks-section {
+        width: 100%;
+        height: auto; /* Allow height to adjust based on content */
+        overflow-y: auto; /* Enable scrolling if needed */
+    }
+  .rad{
+    display: flex;
+    flex-direction: column;
+  }
+    .tasks-div-container {
+        margin-top: 0; /* Remove margin-top on small screens */
+    }
+
+    .task-section-header {
+        flex-direction: column; /* Stack header items vertically */
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+  
+    .task-table-header {
+        width: 100%; /* Full width on small screens */
+        margin-top: 0; /* Remove margin on small screens */
+        
+    }
+
+    .sidebar {
+        width: 100%; /* Sidebar takes full width */
+        padding-left: 0; /* Remove padding */
+        
+        flex-direction: column;
+    }
+  
+    .task-card {
+        flex-direction: column; /* Stack card contents vertically */
+        gap: 5px; /* Reduce gap */
+    }
+  
+    
+  
+    .task-table-cell {
+        flex: 1; /* Allow cells to take full width */
+    }
+  
+    .task-button {
+        padding-inline: 8px; /* Smaller padding */
+        padding-block: 2px; /* Smaller padding */
+    }
+}
+
+/* Tablets (medium screens) */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+    .tasks-section {
+        height: 80vh; /* Maintain height for tablets */
+        width: 100%;
+    }
+
+    .task-section-header {
+        padding: 10px 15px; /* Adjust padding */
+    }
+  
+    .task-table-header {
+        width: calc(100% - 210px); /* Adjust width based on sidebar width */
+    }
+  
+    .sidebar {
+        width: 200px; /* Adjust sidebar width */
+        padding-left: 20px; /* Adjust padding */
+    }
+  
+    .task-card {
+        flex-direction: row; /* Maintain horizontal layout */
+        gap: 10px; /* Standard gap */
+    }
+  
+    .priority-color {
+        min-width: 40px; /* Adjust min-width */
+        height: 25px; /* Adjust height */
+    }
+  
+    .task-table-cell {
+        flex: 0.5; /* Adjust cell width */
+    }
+  
+    .task-button {
+        padding-inline: 10px; /* Adjust padding */
+        padding-block: 3px; /* Adjust padding */
+    }
+}
+
+/* Desktops (large screens) */
+@media only screen and (min-width: 1025px) {
+    .tasks-section {
+        width: 100%;
+        height: 80vh; /* Maintain height */
+        overflow-y: scroll; /* Enable scroll */
+    }
+  
+    .task-section-header {
+        padding: 15px; /* Standard padding */
+    }
+  
+    .task-table-header {
+        width: calc(100% - 260px); /* Original width */
+    }
+  
+    .sidebar {
+        width: 210px; /* Original sidebar width */
+        padding-left: 25px; /* Original padding */
+    }
+  
+    .task-card {
+        flex-direction: row; /* Maintain horizontal layout */
+        gap: 10px; /* Standard gap */
+    }
+  
+    .priority-color {
+        min-width: 50px; /* Original min-width */
+        height: 30px; /* Original height */
+    }
+  
+    .task-table-cell {
+        flex: 0.5; /* Original cell width */
+    }
+  
+    .task-button {
+        padding-inline: 10px; /* Original padding */
+        padding-block: 3px; /* Original padding */
+    }
 }

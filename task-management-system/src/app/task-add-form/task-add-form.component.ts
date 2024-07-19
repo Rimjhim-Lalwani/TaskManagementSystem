@@ -24,7 +24,7 @@ export interface TaskData {
   standalone: true,
   imports: [MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule],
   template: `
-    <button mat-raised-button (click)="openDialog()">Add a task</button>
+    <button mat-raised-button style="background-color:rgb(33, 130, 228);color:black;border-radius:20px;height:30px"  (click)="openDialog()">Add a task</button>
    
   `
 })
@@ -93,16 +93,15 @@ export class TaskAddButton {
         </mat-form-field>
 
         <mat-form-field>
-          <mat-label>Choose a date</mat-label>
+          <mat-label>Choose a Due Date</mat-label>
           <input matInput [min]="minDate" [(ngModel)]="data.duedate" [matDatepicker]="picker" disabled/>
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker disabled="false"></mat-datepicker>
         </mat-form-field>
 
-        <!-- <mat-form-field> -->
           <div style="display:flex; flex-direction: column;margin-top:15px">
-            <label id="example-radio-group-label"><b>Pick priority level:</b> </label>
+            <label id="example-radio-group-label"><b>Set priority:</b> </label>
             <mat-radio-group
               aria-labelledby="example-radio-group-label"
               class="example-radio-group"
@@ -111,9 +110,7 @@ export class TaskAddButton {
                 <mat-radio-button [class]="priority+'-priority-button'" [id]="priority+'-priority-button'" [value]="priority">{{priority}}</mat-radio-button>
               }
             </mat-radio-group>
-            <!-- <div>Your favorite season is: {{priorityLevel}}</div> -->
           </div>
-        <!-- </mat-form-field> -->
       </div>
     </mat-dialog-content>
     <mat-dialog-actions>
