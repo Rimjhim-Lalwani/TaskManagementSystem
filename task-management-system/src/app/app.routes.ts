@@ -6,11 +6,7 @@ export const routes: Routes = [
     {
         path: '',
         component: TaskList,
-        title: "Tasks home",
-    },
-    {
-        path: 'history',
-        component:HistoryComponent,
-        title: "History Page",
+        title: "TaskManakgementSystem",
     }
+   
 ];
