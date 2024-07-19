@@ -90,8 +90,7 @@
     margin-top: 50px;
     width: 15vw;
     padding-left: 25px;
-    display: flex; 
-    flex-direction: row;
+    
 }
 .task-table-container {
     flex-grow: 1;
@@ -165,7 +164,9 @@
 
     .sidebar {
         width: 100%; /* Sidebar takes full width */
-        
+        padding-left: 0;
+        display: flex;
+        align-items: center;
         flex-direction: column;
     }
   
